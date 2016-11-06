@@ -1,0 +1,20 @@
+body {
+    background-color: #BFBFCD;
+    padding-top: 70px;
+}
+
+.navbar-toggle .icon-bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: #acacac;
+  border-radius: 1px;
+}
+
+.table-row{
+    cursor:pointer;
+}
+
+#menuLoginForm {
+    min-width: 250px;
+}

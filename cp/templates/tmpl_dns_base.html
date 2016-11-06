@@ -1,0 +1,81 @@
+{% extends "template_base.html" %}
+
+{% block title %}CP - DNS{% endblock %}
+
+{% block content %}
+
+<div class="panel panel-default">
+    <div class="panel-heading">DNS beheer</div>
+  <div class="panel-body" style="margin-top:0px; padding-top: 0px;">
+
+      <div class="row">
+          <div class="col-md-12">
+              <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" id="btnLogin" class="btn btn-default navbar-btn active">Zones</button>
+                <button type="button" id="btnLogin" class="btn btn-default navbar-btn disabled">Templates</button>
+                <button type="button" id="btnLogin" class="btn btn-default navbar-btn disabled">History</button>
+              </div>
+
+             
+            <hr style="padding:0px;margin-bottom:5px; margin-top:0px" />
+          </div>
+      </div>
+
+      <div class="row">
+          <div class="col-md-4">
+            <div class="input-group" style="padding-top:5px">
+                <input type="text" class="form-control" placeholder="zone naam">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">Add</button>
+                </span>
+            </div><!-- /input-group -->
+            
+            <div style="height:5px"></div>
+
+            <div class="input-group" style="padding-top:5px">
+                <input type="text" class="form-control" placeholder="Search for...">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">Go!</button>
+                </span>
+            </div><!-- /input-group -->
+                    <br />
+                <table class="table table-condensed table-hover">
+                {% for item in zones %}
+                    <tr>
+                        <td style="width: 10px" ><input type="checkbox" value=""></td>
+                        <td data-href="/cp/dns/{{item}}" class="table-row">{{item}}</td>
+                        <td style="text-align: right"><i class="fa fa-flag fa-fw"></i> <i class="fa fa-flag fa-fw" style="color:brown"></i> <i class="fa fa-flag fa-fw" style="color:red"></i><td/>
+                    </tr>
+                {% endfor %}
+                </table>
+
+                <div>
+                    <button type="button" id="btnLogin" class="btn btn-default navbar-btn">Clear all</button>
+                    <button type="submit" id="btnLogin" class="btn btn-default navbar-btn">Delete</button>
+                </div>
+
+          </div>
+
+        <div class="col-md-8">
+            {% block dns-options %}
+            {% endblock %}
+        </div>
+          <!-- todo: change log 
+            <div class="col-md-5">
+                <ul class="list-group " style="list-style-type: none;">
+                
+                    <li><a href="#" class="list-group-item list-group-item-action">12-02-2016 23:11:23 - Edited A record bobislui.nl (i)</a></li>
+                    <li><a href="#" class="list-group-item list-group-item-action">12-02-2016 23:12:23 - Deleted zone bobislui.nl</a></li>
+                    <li><a href="#" class="list-group-item list-group-item-action">12-02-2016 23:11:23 - Created zone bobistegek.nl</a></li>
+                    <li><a href="#" class="list-group-item list-group-item-action">12-02-2016 23:11:23 - Edited A record bobislui.nl (i)</a></li>
+                    <li><a href="#" class="list-group-item list-group-item-action">12-02-2016 23:12:23 - Deleted zone bobislui.nl</a></li>
+                    <li><a href="#" class="list-group-item list-group-item-action">12-02-2016 23:11:23 - Created zone bobistegek.nl</a></li>
+                    <li><a href="#" class="list-group-item list-group-item-action">Meer weergeven</a></li>
+                </ul>
+
+            </div>
+            -->
+  </div>
+  </div>
+</div>
+{% endblock %}

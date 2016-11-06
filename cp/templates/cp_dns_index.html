@@ -1,0 +1,109 @@
+{% extends "tmpl_dns_base.html" %}
+
+{% block title %}CP - DNS{% endblock %}
+
+{% block dns-options %}
+
+{% if zone_name is not None %}
+
+<!-- Modal -->
+<div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">{{zone_name}}</h4>
+      </div>
+      <div class="modal-body">
+          
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Content</label> 
+            <div class="col-sm-8">
+                <input type="text" class="form-control" id="content" placeholder="@">
+            </div>
+            <div class="col-sm-1">
+                <a href="#"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Type</label> 
+            <div class="col-sm-8">
+                <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" style="min-width:80px" type="button" data-toggle="dropdown">A
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li><a href="#">A</a></li>
+                    <li><a href="#">AAA</a></li>
+                    <li><a href="#">NS</a></li>
+                    <li><a href="#">MX</a></li>
+                    <li><a href="#">TXT</a></li>
+                    <li><a href="#">SOA</a></li>
+                </ul>
+                </div>
+            </div>
+            <div class="col-sm-1">
+                <a href="#"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+            </div>
+          </div>
+
+
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Value</label> 
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="content" placeholder="">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">TTL</label> 
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="content" placeholder="">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Prio</label> 
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="content" placeholder="">
+            </div>
+          </div>
+          
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <h4>{{zone_name}}</h4>
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th>content</th>
+          <th>type</th>
+          <th>value</th>
+          <th>prio</th>
+          <th>ttl</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+    {% for item in records %}
+        <tr>
+          <td> {% if item.name == zone_name %} @ {% else %} {{item.short_name}} {% endif %}</td>
+          <td>{{item.type}}</td>
+          <td>{{item.content}}</td>
+          <td>{{item.prio|default:""}}</td>
+          <td class="text-right">{{item.ttl|default:""}}</td>
+          <td class="text-right"><a href="#" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-wrench"></span></a> <a href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
+        </tr>
+    {% endfor %}
+      </tbody>
+    </table>
+add new record
+{% endif%}
+
+{% endblock %}

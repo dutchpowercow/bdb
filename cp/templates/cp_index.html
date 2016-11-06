@@ -1,0 +1,17 @@
+{% extends "template_base.html" %}
+
+{% block title %}control panel{% endblock %}
+
+{% block content %}
+
+<div class="panel panel-default">
+    <div class="panel-heading">Product beheer</div>
+  <div class="panel-body">
+        <table class="table table-condensed table-striped table-hover">
+            {% for item in products %}
+            <tr data-href="/cp/product/{{item.id}}" class="table-row"><td >{{item.id}}</td><td>{{item.name}}</td><td>{{item.description}}</td><td>{{item.status}}</td></tr>
+            {% endfor %}
+        </table>
+  </div>
+</div>
+{% endblock %}
